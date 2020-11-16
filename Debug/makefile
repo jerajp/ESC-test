@@ -32,6 +32,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 ESC-test.list \
 
+OBJCOPY_BIN += \
+ESC-test.bin \
+
 
 # All Target
 all: ESC-test.elf secondary-outputs
@@ -52,12 +55,17 @@ ESC-test.list: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+ESC-test.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "ESC-test.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
 	-$(RM) *
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
 .PHONY: all clean dependents
 .SECONDARY:

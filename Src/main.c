@@ -49,6 +49,7 @@ TIM_HandleTypeDef htim1;
 /* USER CODE BEGIN PV */
 uint32_t potenc1;
 uint32_t watch1;
+uint32_t watch2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -112,9 +113,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+	  HAL_Delay(500);
 	  watch1++;
-
+	  watch2+=2;
+	  ITM_SendChar('a');
   }
   /* USER CODE END 3 */
 }
